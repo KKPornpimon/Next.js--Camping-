@@ -12,7 +12,7 @@ const ProvincesInput = ({name, defaultValue}: {name: string, defaultValue?: stri
 
   return (
     <div className="mb-2">
-      <Label> {name} </Label>
+      <Label className="capitalize"> {name} </Label>
       <Select
         defaultValue={defaultValue || provinces[0].PROVINCE_NAME}
         name={name}

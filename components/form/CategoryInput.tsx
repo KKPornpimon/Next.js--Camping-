@@ -9,11 +9,11 @@ import {
 import {categories} from '@/utils/category';
 
 const CategoryInput = ({defaultValue}: {defaultValue?: string}) => {
-  const name = "Categories";
+  const name = "category";
 
   return (
     <div className="mb-2">
-      <Label> {name} </Label>
+      <Label className="capitalize"> {name} </Label>
       <Select
         defaultValue={defaultValue || categories[0].label}
         name={name}

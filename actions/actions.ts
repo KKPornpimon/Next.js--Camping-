@@ -1,7 +1,7 @@
 import { Landmark } from './../node_modules/.prisma/client/index.d';
 'use server'
 
-import { mySchema, validateWithZod } from "@/utils/schemas"
+import { imageSchema, landmarkSchema, mySchema, validateWithZod } from "@/utils/schemas"
 import { clerkClient, currentUser } from "@clerk/nextjs/server"
 //การเชื่อม db
 import db from '@/utils/db';
@@ -74,13 +74,28 @@ export const createProfileAction = async (previousState:any, formData:FormData) 
 export const createLandmarkAction = async (previousState:any, formData:FormData) => {
     try{
 
-        const user = await currentUser()
-        if(!user) throw new Error('Please Login!!!')
+        const user = await getAuthUser()
 
         const rawData = Object.fromEntries(formData)
+
+        const file = formData.get('image') as File
+        
+
+        //step 1 validated data
         //การเรียกใช้งาน
-        // const validateField = validateWithZod(mySchema, rawData)
-        console.log(rawData)
+        // เช็คการ validate file
+        const validateFile = validateWithZod(imageSchema, {image: file})
+        console.log('step 1 validated data ', validateFile)
+
+        // เช็คการ validate field
+        const validateField = validateWithZod(landmarkSchema, rawData)
+        console.log('step 1 validated data ', validateField)
+
+
+        
+        //step 2 upload image to supabase
+        //step 3 insert to DB
+        
 
 
 

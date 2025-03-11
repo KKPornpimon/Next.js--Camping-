@@ -41,7 +41,7 @@ function LocationMarker({position, setPosition}: LocationMarkerProps) {
 
 const MapLandmark = ({location}: {location?: {lat: number, lng: number}}) => {
 
-  const [position, setPosition] = useState(null)
+  const [position, setPosition] = useState<Latlng | null>(null)
 
   // console.log(position)
 
@@ -57,7 +57,7 @@ const MapLandmark = ({location}: {location?: {lat: number, lng: number}}) => {
             center={ location || defaultLocation } 
             zoom={7} 
             scrollWheelZoom={true}
-            className='h-[50vh] rounded-lg z-0 relative'
+            className='h-[55vh] rounded-lg z-0 relative'
         >
             
             <Marker position={ location || defaultLocation } icon={markerIcon}>
